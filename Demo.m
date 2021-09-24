@@ -11,9 +11,9 @@ Fs=10000;
 N=10000;
 t=(0:1:N-1)/Fs;
 %% load mix-signal, pure-signal
-odata=load('Simdata.mat');
-x=load('Simpure.mat');
-%% Ñ§Ï°
+load('Simdata.mat');%odata
+load('Simpure.mat');%x
+%% å­¦ä¹ 
 Lq=20;
 [dic1,xcofe1,rec1]=CSC_MOD(odata,Lq,K,100); %LoCOMP
 figure
@@ -48,8 +48,8 @@ set(gca,'Ytick',[-1,0,1,2]);
 l1=legend('Simulation fault signal','Reconstructed signal')
 set(l1,'Fontname', 'Times New Roman','FontSize',12)
 set(l1,'Box','off');
-%%  UC-DLA Ê¹ÓÃÁËspams¹¤¾ß°ü ÇëÓÃ±¾µØÂ·¾¶Ìæ»»
-addpath(genpath('/Users/heliu/Learning Algorithms /spams-matlab-v2.6'))
+%%  UC-DLA ä½¿ç”¨äº†SHIFT-INVARIANCEå·¥å…·åŒ… è¯·ç”¨æœ¬åœ°è·¯å¾„æ›¿æ¢
+addpath(genpath('/Users/heliu/Learning Algorithms /SHIFT-INVARIANCE-master'))
 np=Lq;
 close all
 % UC-DLA
@@ -62,7 +62,7 @@ for i=1:floor(N/npq)
 end
 L=1;
 m = size(Ya,1)+1-np;
-[Dconvsu, Xuconvsu] = uconvdlasu(Ya,round(K/size(Ya,2)), L, np, m); %·ÂÕæĞÅºÅ10
+[Dconvsu, Xuconvsu] = uconvdlasu(Ya,round(K/size(Ya,2)), L, np, m); %ä»¿çœŸä¿¡å·10
 Ruconvsu=Dconvsu*Xuconvsu;
 Ry=Ruconvsu(:);
 
@@ -131,8 +131,8 @@ l1=legend('Simulation fault signal','Reconstructed signal')
 set(l1,'Fontname', 'Times New Roman','FontSize',12)
 set(l1,'Box','off');
 
-%% cbpdndl·½·¨
-% Ê¹ÓÃÁËsporco¹¤¾ß°ü£¬ÇëÓÃ±¾µØÂ·¾¶Ìæ»»
+%% cbpdndlæ–¹æ³•
+% ä½¿ç”¨äº†sporcoå·¥å…·åŒ…ï¼Œè¯·ç”¨æœ¬åœ°è·¯å¾„æ›¿æ¢
 addpath(genpath('/Users/heliu/Learning Algorithms /sporco-m0.0.9'))
 
 clc
@@ -183,7 +183,7 @@ set(gca,'Ytick',[-1,0,1,2]);
 l1=legend('Simulation fault signal','Reconstructed signal')
 set(l1,'Fontname', 'Times New Roman','FontSize',12)
 set(l1,'Box','off');
-%%  Ê±¼äÍ³¼Æ  
+%%  æ—¶é—´ç»Ÿè®¡  
 ct1=tic
 for i=1:10
     [dic1,xcofe1,rec1]=CSC_MOD(odata,Lq,K,100); %LoCOMP
@@ -202,7 +202,7 @@ L=1;
 m = size(Ya,1)+1-np;
 ct1=tic;
 for i=1:10
-[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %·ÂÕæĞÅºÅ10
+[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %ä»¿çœŸä¿¡å·10
 end
 ct2=toc(ct1)
 (ct2)/10
@@ -219,7 +219,7 @@ L=1;
 m = size(Ya,1)+1-np;
 ct1=tic;
 for i=1:10
-[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %·ÂÕæĞÅºÅ10
+[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %ä»¿çœŸä¿¡å·10
 end
 ct2=toc(ct1)
 (ct2)/10
@@ -235,7 +235,7 @@ L=1;
 m = size(Ya,1)+1-np;
 ct1=tic;
 for i=1:10
-[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %·ÂÕæĞÅºÅ10
+[Dconvsu, Xuconvsu] = uconvdlasu(Ya,K/size(Ya,2), L, np, m); %ä»¿çœŸä¿¡å·10
 end
 ct2=toc(ct1)/10
 Ruconvsu=Dconvsu*Xuconvsu;
